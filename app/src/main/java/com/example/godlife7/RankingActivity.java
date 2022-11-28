@@ -42,7 +42,9 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
     private FirebaseAuth mFirebaseAuth; //파이어베이스 인증
     private DatabaseReference mDatabase; //실시간 데이터베이스
     private DatabaseReference mockUsersDatabase;
-    private FirebaseUser user;
+    private DatabaseReference realUsersDatabase;
+    private FirebaseUser currentUser;
+
     private HashMap<String, Long> exercise_daily = new HashMap<>();
     private HashMap<String, Long> exercise_weekly = new HashMap<>();
     private HashMap<String, Long> read_daily = new HashMap<>();
@@ -51,6 +53,16 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
     private HashMap<String, Long> study_weekly = new HashMap<>();
     private HashMap<String, Long> sleep_daily = new HashMap<>();
     private HashMap<String, Long> sleep_weekly = new HashMap<>();
+
+    private HashMap<String, Long> exercise_daily_friends = new HashMap<>();
+    private HashMap<String, Long> exercise_weekly_friends = new HashMap<>();
+    private HashMap<String, Long> read_daily_friends = new HashMap<>();
+    private HashMap<String, Long> read_weekly_friends = new HashMap<>();
+    private HashMap<String, Long> study_daily_friends = new HashMap<>();
+    private HashMap<String, Long> study_weekly_friends = new HashMap<>();
+    private HashMap<String, Long> sleep_daily_friends = new HashMap<>();
+    private HashMap<String, Long> sleep_weekly_friends = new HashMap<>();
+
     private LinearLayout weeklyRankingLayout;
     private LinearLayout dailyRankingLayout;
 
@@ -80,6 +92,9 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
     private AddFriendListenerClass addFriendListenerClass;
 
     private TextView usernameTv;
+
+    private static long friendSize = 0;
+    private static String friendUID = "";
 
     public RankingActivity(){
         category.put("STUDY", true);
@@ -112,7 +127,54 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         return temp;
     }
 
-    private void saveData(DataSnapshot snapshot){
+    /**
+     * 실시간 데이터베이스에 시간데이터가 어떻게 저장이 되어있는지 알아야함
+     *
+     */
+    private void saveFriendsUserData(DataSnapshot snapshot){
+        // DataSnapshot : UserAccount
+        DatabaseReference friends = realUsersDatabase.child(currentUser.getUid()).child("friends");
+
+        for(DataSnapshot dataSnapshot : snapshot.getChildren()) { // 유저마다
+            String username = (String) dataSnapshot.child("username").getValue();
+
+            Long exercise_daily_time = (Long) dataSnapshot.child("exercise").child("daily").getValue();
+            exercise_daily.put(username, exercise_daily_time);
+
+            Long exercise_weekly_time = (Long) dataSnapshot.child("exercise").child("weekly").getValue();
+            exercise_weekly.put(username, exercise_weekly_time);
+
+            Long read_daily_time = (Long) dataSnapshot.child("read").child("daily").getValue();
+            read_daily.put(username, read_daily_time);
+
+            Long read_weekly_time = (Long) dataSnapshot.child("read").child("weekly").getValue();
+            read_weekly.put(username, read_weekly_time);
+
+            Long study_daily_time = (Long) dataSnapshot.child("study").child("daily").getValue();
+            study_daily.put(username, study_daily_time);
+
+            Long study_weekly_time = (Long) dataSnapshot.child("study").child("weekly").getValue();
+            study_weekly.put(username, study_weekly_time);
+
+            Long sleep_daily_time = (Long) dataSnapshot.child("sleep").child("daily").getValue();
+            sleep_daily.put(username, sleep_daily_time);
+
+            Long sleep_weekly_time = (Long) dataSnapshot.child("sleep").child("weekly").getValue();
+            sleep_weekly.put(username, sleep_weekly_time);
+        }
+
+        exercise_daily = sortByValue(exercise_daily);
+        exercise_weekly = sortByValue(exercise_weekly);
+        read_daily = sortByValue(read_daily);
+        read_weekly = sortByValue(read_weekly);
+        study_daily = sortByValue(study_daily);
+        study_weekly = sortByValue(study_weekly);
+        sleep_daily = sortByValue(sleep_daily);
+        sleep_weekly = sortByValue(sleep_weekly);
+    }
+
+
+    private void saveMockUserData(DataSnapshot snapshot){
         for(DataSnapshot dataSnapshot : snapshot.getChildren()) { // 유저마다
             String username = (String) dataSnapshot.child("username").getValue();
 
@@ -327,31 +389,33 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         if(category.equals("STUDY") && range.equals("ALL")){
             weeklyRankingTitle.setText(R.string.weekly_title_study_all);
             dailyRankingTitle.setText(R.string.daily_title_study_all);
-        }else if(category.equals("STUDY") && range.equals("FRIENDS")){
-            weeklyRankingTitle.setText(R.string.weekly_title_study_friends);
-            dailyRankingTitle.setText(R.string.daily_title_study_friends);
         }
-
         else if(category.equals("EXERCISE") && range.equals("ALL")){
             weeklyRankingTitle.setText(R.string.weekly_title_exercise_all);
             dailyRankingTitle.setText(R.string.daily_title_exercise_all);
-        }else if(category.equals("EXERCISE") && range.equals("FRIENDS")){
-            weeklyRankingTitle.setText(R.string.weekly_title_exercise_friends);
-            dailyRankingTitle.setText(R.string.daily_title_exercise_friends);
         }
-
         else if(category.equals("READ") && range.equals("ALL")){
             weeklyRankingTitle.setText(R.string.weekly_title_read_all);
             dailyRankingTitle.setText(R.string.daily_title_read_all);
-        }else if(category.equals("READ") && range.equals("FRIENDS")){
-            weeklyRankingTitle.setText(R.string.weekly_title_read_friends);
-            dailyRankingTitle.setText(R.string.daily_title_read_friends);
         }
-
         else if (category.equals("SLEEP") && range.equals("ALL")){
             weeklyRankingTitle.setText(R.string.weekly_title_sleep_all);
             dailyRankingTitle.setText(R.string.daily_title_sleep_all);
-        }else if (category.equals("SLEEP") && range.equals("FRIENDS")){
+        }
+
+        else if(category.equals("STUDY") && range.equals("FRIENDS")){
+            weeklyRankingTitle.setText(R.string.weekly_title_study_friends);
+            dailyRankingTitle.setText(R.string.daily_title_study_friends);
+        }
+        else if(category.equals("EXERCISE") && range.equals("FRIENDS")){
+            weeklyRankingTitle.setText(R.string.weekly_title_exercise_friends);
+            dailyRankingTitle.setText(R.string.daily_title_exercise_friends);
+        }
+        else if(category.equals("READ") && range.equals("FRIENDS")){
+            weeklyRankingTitle.setText(R.string.weekly_title_read_friends);
+            dailyRankingTitle.setText(R.string.daily_title_read_friends);
+        }
+        else if (category.equals("SLEEP") && range.equals("FRIENDS")){
             weeklyRankingTitle.setText(R.string.weekly_title_sleep_friends);
             dailyRankingTitle.setText(R.string.daily_title_sleep_friends);
         }
@@ -362,39 +426,41 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
             constructWeeklyRanking(study_weekly);
             constructDailyRanking(study_daily);
             constructTitle("STUDY", "ALL");
-        }else if(category.get("STUDY") == true && range.get("FRIENDS") == true){
-            constructWeeklyRanking(study_weekly);
-            constructDailyRanking(study_daily);
-            constructTitle("STUDY", "FRIENDS");
         }
-
         else if(category.get("EXERCISE") == true && range.get("ALL") == true){
             constructWeeklyRanking(exercise_weekly);
             constructDailyRanking(exercise_daily);
             constructTitle("EXERCISE", "ALL");
-        }else if(category.get("EXERCISE") == true && range.get("FRIENDS") == true){
-            constructWeeklyRanking(exercise_weekly);
-            constructDailyRanking(exercise_daily);
-            constructTitle("EXERCISE", "FRIENDS");
         }
-
         else if(category.get("READ") == true  && range.get("ALL") == true){
             constructWeeklyRanking(read_weekly);
             constructDailyRanking(read_daily);
             constructTitle("READ", "ALL");
-        }else if(category.get("READ") == true  && range.get("FRIENDS") == true){
-            constructWeeklyRanking(read_weekly);
-            constructDailyRanking(read_daily);
-            constructTitle("READ", "FRIENDS");
         }
-
         else if(category.get("SLEEP") == true  && range.get("ALL") == true){
             constructWeeklyRanking(sleep_weekly);
             constructDailyRanking(sleep_daily);
             constructTitle("SLEEP", "ALL");
-        }else if(category.get("SLEEP") == true  && range.get("FRIENDS") == true){
-            constructWeeklyRanking(sleep_weekly);
-            constructDailyRanking(sleep_daily);
+        }
+
+        else if(category.get("STUDY") == true && range.get("FRIENDS") == true){
+//            constructWeeklyRanking(study_weekly);
+//            constructDailyRanking(study_daily);
+            constructTitle("STUDY", "FRIENDS");
+        }
+        else if(category.get("EXERCISE") == true && range.get("FRIENDS") == true){
+//            constructWeeklyRanking(exercise_weekly);
+//            constructDailyRanking(exercise_daily);
+            constructTitle("EXERCISE", "FRIENDS");
+        }
+        else if(category.get("READ") == true  && range.get("FRIENDS") == true){
+//            constructWeeklyRanking(read_weekly);
+//            constructDailyRanking(read_daily);
+            constructTitle("READ", "FRIENDS");
+        }
+        else if(category.get("SLEEP") == true  && range.get("FRIENDS") == true){
+//            constructWeeklyRanking(sleep_weekly);
+//            constructDailyRanking(sleep_daily);
             constructTitle("SLEEP", "FRIENDS");
         }
     }
@@ -545,9 +611,52 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
 
     class AddFriendListenerClass implements View.OnClickListener{
         public void onClick(View v){
-            Editable friendEmail = friendEmailInput.getText();
-            Toast.makeText(RankingActivity.this, friendEmail, Toast.LENGTH_SHORT).show();
+            String friendEmail = friendEmailInput.getText().toString();
+            saveFriendUIDByEmail(friendEmail);
+
+            if (!friendUID.equals("")){
+                realUsersDatabase.child(currentUser.getUid()).child("friends").child(friendUID).setValue(true);
+                realUsersDatabase.child(friendUID).child("friends").child(currentUser.getUid()).setValue(true);
+                Toast.makeText(RankingActivity.this, "친구가 추가되었습니다.", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(RankingActivity.this, "해당 사용자가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
+            }
+
         }
+    }
+
+    public void saveFriendUIDByEmail(String email){
+        realUsersDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    if (dataSnapshot.child("emailId").getValue(String.class).equals(email)){
+                        friendUID = dataSnapshot.getKey();
+                        return;
+                    }
+                }
+                friendUID = "";
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void calculateFriendSize(){
+        realUsersDatabase.child(currentUser.getUid()).child("friends").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                friendSize = snapshot.getChildrenCount();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void initSelectCategory(){
@@ -556,7 +665,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void setActivityUsername(){
-        mDatabase.child("godlife").child("UserAccount").child(user.getUid()).child("name").addValueEventListener(new ValueEventListener() {
+        realUsersDatabase.child(currentUser.getUid()).child("name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String username = dataSnapshot.getValue(String.class);
@@ -570,11 +679,11 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
-    public void setActivityRanking(){
+    public void setMockActivityRanking(){
         mockUsersDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                saveData(snapshot);
+                saveMockUserData(snapshot);
                 constructWeeklyRanking(study_weekly);
                 constructDailyRanking(study_daily);
             }
@@ -586,13 +695,14 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        user = mFirebaseAuth.getCurrentUser();
+        currentUser = mFirebaseAuth.getCurrentUser();
 
         usernameTv = findViewById(R.id.ranking_username);
 
@@ -601,9 +711,14 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
 
         mDatabase = FirebaseDatabase.getInstance("https://godlife-a1b20-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
         mockUsersDatabase = mDatabase.child("mock_users");
+        realUsersDatabase = mDatabase.child("godlife").child("UserAccount");
 
-        setActivityRanking();
+        setMockActivityRanking();
         setActivityUsername();
+        calculateFriendSize();
+
+        test();
+
         // 1분 : 60초 , 1시간 : 3,600초 , 5시간 : 18,000초, 10시간 : 36,000초, 50시간 : 180,000초
 
         categoryStudy = findViewById(R.id.category_study);
@@ -630,5 +745,23 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         addFriendListenerClass = new AddFriendListenerClass();
 
         initSelectCategory();
+    }
+
+    public void test(){
+        realUsersDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    String email = dataSnapshot.child("emailId").getValue(String.class);
+//                    Toast.makeText(RankingActivity.this, dataSnapshot.getKey(), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
