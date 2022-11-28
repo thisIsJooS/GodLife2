@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--    친구추가버튼-->
+    <Button
+        android:id="@+id/show_add_friend_dialog_btn"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom|center"
+        android:textAlignment="center"
+        android:layout_marginBottom="20dp"
+        android:paddingVertical="10dp"
+        android:text="친구추가"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:backgroundTint="#212633"
+        android:visibility="invisible"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--상단바-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#6933f7"
+            android:baselineAligned="true"
+            android:gravity="center_vertical"
+            android:padding="10dp">
+
+
+            <TextView
+                android:id="@+id/ranking_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:padding="5dp"
+                android:text="아무개"
+                android:textColor="#FFF"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|bottom"
+                android:text="님"
+                android:textColor="#FFF"
+                android:translationY="1.47sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="260dp"
+                android:gravity="center_vertical|center_horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_home"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HOME"
+                    android:textColor="#FFF"
+                    android:textSize="10dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--카테고리박스-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/category_study"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/border"
+                >
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/study"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="공부"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/category_exercise"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/border">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/exercise"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="운동"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/category_read"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/border">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/book"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="독서"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/category_sleep"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/border">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/sleep"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="수면"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--    전체/친구-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/category_all"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="전체"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/border"
+                />
+            <TextView
+                android:id="@+id/category_friends"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="친구"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/border"/>
+        </LinearLayout>
+
+        <!--    랭킹-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!--        주간-->
+                    <TextView
+                        android:id="@+id/weekly_ranking_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="주간 공부 시간 전체 랭킹"
+                        android:padding="8dp"
+                        android:background="@drawable/border"
+                        android:backgroundTint="#aaaaaa"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/border_round"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:backgroundTint="#eeeeee"
+                        >
+
+                        <!--                내순위-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="32."
+                            android:gravity="center_vertical|center_horizontal"
+                            android:paddingLeft="36px"
+                            android:textSize="18dp"
+                            />
+
+                        <!--                내이름-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="아무개"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:paddingLeft="24px"
+                            android:textSize="18dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="00:00:00"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:layout_marginLeft="560px"
+                            android:textSize="18dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/weekly_ranking_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+
+                    <!--        주간 끝-->
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!--        일간-->
+
+                    <TextView
+                        android:id="@+id/daily_ranking_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border"
+                        android:backgroundTint="#aaaaaa"
+                        android:padding="8dp"
+                        android:text="일간 공부 시간 전체 랭킹" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/border_round"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:backgroundTint="#eeeeee"
+                        >
+
+                        <!--                내순위-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="32."
+                            android:gravity="center_vertical|center_horizontal"
+                            android:paddingLeft="36px"
+                            android:textSize="18dp"/>
+
+                        <!--                내이름-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="아무개"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:paddingLeft="24px"
+                            android:textSize="18dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="00:00:00"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:layout_marginLeft="560px"
+                            android:textSize="18dp"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/daily_ranking_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    </LinearLayout>
+                    <!--        일간 끝-->
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

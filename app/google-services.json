@@ -1,0 +1,135 @@
+{
+  "project_info": {
+    "project_number": "372043468115",
+    "firebase_url": "https://godlife-a1b20-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "godlife-a1b20",
+    "storage_bucket": "godlife-a1b20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372043468115:android:7f4cc560e4745930ea25a6",
+        "android_client_info": {
+          "package_name": "com.company.godlife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372043468115-l4i0ffls3n5qsre2mslnsd6vkdl62lsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5rdp1fKQl7pe9WGJWQJueDUZNk3v8fIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372043468115-l4i0ffls3n5qsre2mslnsd6vkdl62lsc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372043468115:android:6d02b2b16eb49ac2ea25a6",
+        "android_client_info": {
+          "package_name": "com.example.godlife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372043468115-l4i0ffls3n5qsre2mslnsd6vkdl62lsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5rdp1fKQl7pe9WGJWQJueDUZNk3v8fIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372043468115-l4i0ffls3n5qsre2mslnsd6vkdl62lsc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372043468115:android:d85036b84a08aa81ea25a6",
+        "android_client_info": {
+          "package_name": "com.example.godlife111"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372043468115-nh6ieqcqtl31ei87btmadhlom4v8h8m6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.godlife111",
+            "certificate_hash": "fa75538e9ca4ad332c25c0ed499ac1eeb929faa9"
+          }
+        },
+        {
+          "client_id": "372043468115-l4i0ffls3n5qsre2mslnsd6vkdl62lsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5rdp1fKQl7pe9WGJWQJueDUZNk3v8fIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372043468115-l4i0ffls3n5qsre2mslnsd6vkdl62lsc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372043468115:android:ff2d59f2c75ffeb5ea25a6",
+        "android_client_info": {
+          "package_name": "com.example.godlife7"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372043468115-l4i0ffls3n5qsre2mslnsd6vkdl62lsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5rdp1fKQl7pe9WGJWQJueDUZNk3v8fIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372043468115-l4i0ffls3n5qsre2mslnsd6vkdl62lsc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

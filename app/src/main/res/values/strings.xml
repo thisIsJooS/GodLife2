@@ -1,0 +1,23 @@
+<resources>
+<string name="app_name">GodLife7</string>
+
+<string name="weekly_title_study_all">주간 공부 시간 전체 랭킹</string>
+<string name="weekly_title_exercise_all">주간 운동 시간 전체 랭킹</string>
+<string name="weekly_title_read_all">주간 독서 시간 전체 랭킹</string>
+<string name="weekly_title_sleep_all">주간 수면 시간 전체 랭킹</string>
+
+<string name="daily_title_study_all">일간 공부 시간 전체 랭킹</string>
+<string name="daily_title_exercise_all">일간 운동 시간 전체 랭킹</string>
+<string name="daily_title_read_all">일간 독서 시간 전체 랭킹</string>
+<string name="daily_title_sleep_all">일간 수면 시간 전체 랭킹</string>
+
+<string name="weekly_title_study_friends">주간 공부 시간 친구 랭킹</string>
+<string name="weekly_title_exercise_friends">주간 운동 시간 친구 랭킹</string>
+<string name="weekly_title_read_friends">주간 독서 시간 친구 랭킹</string>
+<string name="weekly_title_sleep_friends">주간 수면 시간 친구 랭킹</string>
+
+<string name="daily_title_study_friends">일간 공부 시간 친구 랭킹</string>
+<string name="daily_title_exercise_friends">일간 운동 시간 친구 랭킹</string>
+<string name="daily_title_read_friends">일간 독서 시간 친구 랭킹</string>
+<string name="daily_title_sleep_friends">일간 수면 시간 친구 랭킹</string>
+</resources>

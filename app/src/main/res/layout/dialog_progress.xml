@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="6dp"
+    android:background="@drawable/progress_bg"
+    android:gravity="center"
+    >
+    <FrameLayout
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:background="@drawable/button_round_little">
+        <ProgressBar
+            android:layout_marginTop="10dp"
+            android:layout_gravity="top|center"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:indeterminateDrawable="@drawable/progress_image" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="로딩중"
+            android:layout_marginTop="1dp"
+
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="10dp"
+            />
+    </FrameLayout>>
+</LinearLayout>
