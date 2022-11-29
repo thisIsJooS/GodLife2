@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eeeeee"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!--    친구추가버튼-->
@@ -109,7 +110,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="공부"/>
+                    android:text="공부"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
             <LinearLayout
@@ -127,7 +129,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="운동"/>
+                    android:text="운동"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
             <LinearLayout
@@ -145,7 +148,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="독서"/>
+                    android:text="독서"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
             <LinearLayout
@@ -163,7 +167,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="수면"/>
+                    android:text="수면"
+                    android:textColor="@color/black"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -179,6 +184,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="전체"
+                android:textColor="@color/black"
                 android:gravity="center_vertical|center_horizontal"
                 android:background="@drawable/border"
                 />
@@ -188,6 +194,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="친구"
+                android:textColor="@color/black"
                 android:gravity="center_vertical|center_horizontal"
                 android:background="@drawable/border"/>
         </LinearLayout>
@@ -226,35 +233,49 @@
                         android:background="@drawable/border_round"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:backgroundTint="#eeeeee"
+                        android:backgroundTint="#cccccc"
                         >
 
                         <!--                내순위-->
                         <TextView
+                            android:id="@+id/my_weekly_ranking"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="32."
+                            android:textColor="@color/black"
                             android:gravity="center_vertical|center_horizontal"
                             android:paddingLeft="36px"
                             android:textSize="18dp"
+                            android:layout_marginLeft="1dp"
                             />
 
                         <!--                내이름-->
                         <TextView
+                            android:id="@+id/my_weekly_username"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="아무개"
+                            android:textColor="@color/black"
                             android:gravity="center_vertical|center_horizontal"
                             android:paddingLeft="24px"
                             android:textSize="18dp"/>
 
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/back_tranparent"
+                            />
+
                         <TextView
+                            android:id="@+id/my_weekly_time"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="00:00:00"
                             android:gravity="center_vertical|center_horizontal"
-                            android:layout_marginLeft="560px"
-                            android:textSize="18dp"/>
+                            android:layout_marginRight="10dp"
+                            android:textSize="18dp"
+                            android:textColor="@color/black"/>
 
                     </LinearLayout>
 
@@ -292,33 +313,47 @@
                         android:background="@drawable/border_round"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:backgroundTint="#eeeeee"
+                        android:backgroundTint="#cccccc"
                         >
 
                         <!--                내순위-->
                         <TextView
+                            android:id="@+id/my_daily_ranking"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="32."
                             android:gravity="center_vertical|center_horizontal"
                             android:paddingLeft="36px"
-                            android:textSize="18dp"/>
+                            android:textSize="18dp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="1dp"/>
 
                         <!--                내이름-->
                         <TextView
+                            android:id="@+id/my_daily_username"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="아무개"
+                            android:textColor="@color/black"
                             android:gravity="center_vertical|center_horizontal"
                             android:paddingLeft="24px"
                             android:textSize="18dp"/>
 
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/back_tranparent"
+                            />
+
                         <TextView
+                            android:id="@+id/my_daily_time"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="00:00:00"
+                            android:textColor="@color/black"
                             android:gravity="center_vertical|center_horizontal"
-                            android:layout_marginLeft="560px"
+                            android:layout_marginRight="10dp"
                             android:textSize="18dp"/>
 
                     </LinearLayout>
